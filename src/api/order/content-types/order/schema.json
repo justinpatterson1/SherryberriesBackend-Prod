@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cart": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cart-item.cart-item",
+      "inversedBy": "order"
+    },
+    "paymentType": {
+      "type": "enumeration",
+      "enum": [
+        "CC",
+        "C.O.D",
+        "BT"
+      ]
+    },
+    "isPaid": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "shipping_address": {
+      "type": "text"
+    },
+    "shipping_method": {
+      "type": "enumeration",
+      "enum": [
+        "ttpost",
+        "courier",
+        "websource",
+        "DHL"
+      ]
+    },
+    "tracking_number": {
+      "type": "text"
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "order_status": {
+      "type": "enumeration",
+      "enum": [
+        "open",
+        "closed",
+        "pending",
+        "cancelled"
+      ]
+    },
+    "phone": {
+      "type": "integer"
+    },
+    "orderId": {
+      "type": "uid"
+    },
+    "date": {
+      "type": "date"
+    },
+    "subtotal": {
+      "type": "decimal"
+    }
+  }
+}

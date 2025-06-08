@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "clothing_products",
+  "info": {
+    "singularName": "clothing-product",
+    "pluralName": "clothing-products",
+    "displayName": "Clothing_Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Hero": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "merchandises": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::merchandise.merchandise"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "waistbeads",
+  "info": {
+    "singularName": "waistbead",
+    "pluralName": "waistbeads",
+    "displayName": "Waistbead",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "discount": {
+      "type": "integer"
+    },
+    "ItemType": {
+      "type": "string"
+    },
+    "Instructions": {
+      "type": "blocks"
+    }
+  }
+}

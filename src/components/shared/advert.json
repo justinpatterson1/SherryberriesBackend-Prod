@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_shared_adverts",
+  "info": {
+    "displayName": "Advert",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "CallToAction": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_shared_cart_items",
+  "info": {
+    "displayName": "CartItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "ItemType": {
+      "type": "string"
+    },
+    "jewelries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::jewelry.jewelry"
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1
+    },
+    "color": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "merchandises": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::merchandise.merchandise"
+    },
+    "clothingSize": {
+      "type": "string"
+    },
+    "waistbeads": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::waistbead.waistbead"
+    },
+    "waistbeadSize": {
+      "type": "integer"
+    },
+    "aftercares": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::aftercare.aftercare"
+    }
+  }
+}

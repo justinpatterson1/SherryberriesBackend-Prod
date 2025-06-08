@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "jewelry_products",
+  "info": {
+    "singularName": "jewelry-product",
+    "pluralName": "jewelry-products",
+    "displayName": "Jewelry_Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.hero"
+    },
+    "jewelries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::jewelry.jewelry"
+    }
+  }
+}

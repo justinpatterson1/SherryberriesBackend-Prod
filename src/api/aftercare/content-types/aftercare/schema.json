@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aftercares",
+  "info": {
+    "singularName": "aftercare",
+    "pluralName": "aftercares",
+    "displayName": "Aftercare",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "ItemType": {
+      "type": "string"
+    }
+  }
+}

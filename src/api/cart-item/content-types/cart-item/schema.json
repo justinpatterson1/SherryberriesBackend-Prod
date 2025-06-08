@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cart_items",
+  "info": {
+    "singularName": "cart-item",
+    "pluralName": "cart-items",
+    "displayName": "Cart",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cart-item"
+    },
+    "TotalPrice": {
+      "type": "decimal"
+    },
+    "User": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "deliveryFee": {
+      "type": "decimal",
+      "default": 40
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order",
+      "mappedBy": "cart"
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "code": {
+      "type": "string"
+    },
+    "discountValue": {
+      "type": "decimal"
+    },
+    "discountType": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_jewelry_sizes",
+  "info": {
+    "displayName": "Jewelry_size",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "quantity": {
+      "type": "integer"
+    },
+    "Size": {
+      "type": "integer"
+    }
+  }
+}

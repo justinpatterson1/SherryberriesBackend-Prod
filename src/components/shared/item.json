@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_items",
+  "info": {
+    "displayName": "Item"
+  },
+  "options": {},
+  "attributes": {
+    "jewelries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::jewelry.jewelry"
+    }
+  }
+}

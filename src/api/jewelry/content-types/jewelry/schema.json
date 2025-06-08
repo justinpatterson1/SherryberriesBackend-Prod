@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jewelries",
+  "info": {
+    "singularName": "jewelry",
+    "pluralName": "jewelries",
+    "displayName": "Jewelry",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "integer",
+      "default": 0
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Nose-Ring",
+        "Tragus",
+        "Belly-Ring",
+        "Septum",
+        "Tongue-Ring"
+      ]
+    },
+    "Instructions": {
+      "type": "blocks"
+    },
+    "material": {
+      "type": "enumeration",
+      "enum": [
+        "Gold",
+        "Silver",
+        "Acrylic",
+        "Plastic",
+        "Stainless-Steel"
+      ]
+    },
+    "ItemType": {
+      "type": "string",
+      "default": "Jewelry",
+      "required": true
+    },
+    "sizes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.jewelry-size"
+    }
+  }
+}

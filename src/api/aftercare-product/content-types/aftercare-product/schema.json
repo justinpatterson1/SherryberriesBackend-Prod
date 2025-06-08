@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "aftercare_products",
+  "info": {
+    "singularName": "aftercare-product",
+    "pluralName": "aftercare-products",
+    "displayName": "Aftercare_Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Hero": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "aftercares": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::aftercare.aftercare"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "waistbead_products",
+  "info": {
+    "singularName": "waistbead-product",
+    "pluralName": "waistbead-products",
+    "displayName": "Waistbead_Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "waistbeads": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::waistbead.waistbead"
+    },
+    "Hero": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
