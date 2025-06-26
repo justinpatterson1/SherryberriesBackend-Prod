@@ -6,7 +6,7 @@ module.exports = ({env}) => ({
     config: {
       provider: 'aws-s3',
       providerOptions: {
-        baseUrl: env('AWS_BASE_URL'),
+        //baseUrl: env('AWS_BASE_URL'),
         rootPath: 'images/',
         s3Options: {
           credentials: {
@@ -30,7 +30,7 @@ module.exports = ({env}) => ({
   },
     "users-permissions": {
         config: {
-          jwtSecret: env('JWT_SECRET', 'your-jwt-secret'), // Ensure this is set
+          jwtSecret: env('JWT_SECRET'), // Ensure this is set
           jwtExpiresIn: '7d', // Customize expiration time (optional)
           register: {
             emailConfirmation: true,
