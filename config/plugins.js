@@ -5,30 +5,26 @@ module.exports = ({env}) => ({
  upload: {
     config: {
       provider: 'aws-s3',
-      optimize: false,
       providerOptions: {
+        baseUrl: env('AWS_BASE_URL'),
+        rootPath: 'images/',
         s3Options: {
           credentials: {
-            accessKeyId:     env('AWS_ACCESS_KEY_ID'),
+            accessKeyId: env('AWS_ACCESS_KEY_ID'),
             secretAccessKey: env('AWS_SECRET_ACCESS_KEY'),
           },
-          region:     env('AWS_REGION'),
-          defaultsMode: 'legacy',
-          // ↓ disable forced checksums unless you supply one ↓
-          requestChecksumCalculation:  'NONE',
-          responseChecksumValidation:  'NONE',
+          region: env('AWS_REGION'),
           params: {
+            ACL: env('AWS_ACL', 'public-read'),
+            //signedUrlExpires: env('AWS_SIGNED_URL_EXPIRES', 15 * 60),
             Bucket: env('AWS_S3_BUCKET_NAME'),
-            ACL:    env('AWS_ACL', 'public-read'),
           },
         },
-        rootPath: 'images/',
-        baseURL:env('AWS_BASE_URL')   // optional subfolder
       },
       actionOptions: {
-        upload:       {},
+        upload: {},
         uploadStream: {},
-        delete:       {},
+        delete: {},
       },
     },
   },
