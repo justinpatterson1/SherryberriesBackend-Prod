@@ -27,10 +27,6 @@
     "strapi-plugin-import-export-content": "^0.4.2",
     "styled-components": "^6.0.0"
   },
-  "devDependencies": {
-    "patch-package": "^6.5.0",
-    "postinstall-postinstall": "^2.1.0"
-  },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
