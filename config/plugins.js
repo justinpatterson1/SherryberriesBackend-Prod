@@ -1,13 +1,37 @@
+console.log('🔔 custom plugins.js loaded');
+
+
 module.exports = ({env}) => ({
-    upload: {
-        breakpoints: {
-          xlarge: 1920,
-          large: 1000,
-          medium: 750,
-          small: 500,
-          xsmall:250
+ upload: {
+    config: {
+      provider: 'aws-s3',
+      optimize: false,
+      providerOptions: {
+        s3Options: {
+          credentials: {
+            accessKeyId:     env('AWS_ACCESS_KEY_ID'),
+            secretAccessKey: env('AWS_SECRET_ACCESS_KEY'),
+          },
+          region:     env('AWS_REGION'),
+          defaultsMode: 'legacy',
+          // ↓ disable forced checksums unless you supply one ↓
+          requestChecksumCalculation:  'NONE',
+          responseChecksumValidation:  'NONE',
+          params: {
+            Bucket: env('AWS_S3_BUCKET_NAME'),
+            ACL:    env('AWS_ACL', 'public-read'),
+          },
         },
+        rootPath: 'images/',
+        baseURL:env('AWS_BASE_URL')   // optional subfolder
       },
+      actionOptions: {
+        upload:       {},
+        uploadStream: {},
+        delete:       {},
+      },
+    },
+  },
     "users-permissions": {
         config: {
           jwtSecret: env('JWT_SECRET', 'your-jwt-secret'), // Ensure this is set
