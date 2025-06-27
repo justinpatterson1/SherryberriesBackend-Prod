@@ -4,7 +4,7 @@ console.log('🔔 custom plugins.js loaded');
 module.exports = ({env}) => ({
  upload: {
     config: {
-      provider: 'aws-s3',
+      provider: 'aws-s3-custom',
       providerOptions: {
         //baseUrl: env('AWS_BASE_URL'),
         rootPath: 'images/',
