@@ -40,7 +40,7 @@ module.exports = ({env}) => ({
     email: {
         provider: 'mailgun', // Use the Mailgun provider
         providerOptions: {
-          apiKey:env('MAILGUN_APIKEY'), // Replace with your Mailgun API key
+          apiKey:env('MAILGUN_API_KEY'), // Replace with your Mailgun API key
           domain: env('MAILGUN_DOMAIN'), // Replace with your Mailgun domain (e.g., mg.yourdomain.com)
         },
         settings: {
