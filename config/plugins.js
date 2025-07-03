@@ -48,5 +48,9 @@ module.exports = ({env}) => ({
           defaultReplyTo: 'sherryvanessanichols@gmail.com', // The reply-to email
         },
       },
+      'image-optimizer': {
+    enabled: false,
+  },
+
     
 });
