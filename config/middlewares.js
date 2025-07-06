@@ -27,7 +27,17 @@ module.exports = ({env})=> [
           },
         },
       },
-  'strapi::cors',
+   {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      origin: [
+        env('FRONTEND_URL', 'http://localhost:3000'),
+        'https://sherryberriesbackend-prod.onrender.com'
+      ],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
