@@ -30,7 +30,6 @@ module.exports = ({env})=> [
    {
     name: 'strapi::cors',
     config: {
-      enabled: true,
       origin: [
         env('FRONTEND_URL', 'http://localhost:3000'),
         'https://sherryberriesbackend-prod.onrender.com'
