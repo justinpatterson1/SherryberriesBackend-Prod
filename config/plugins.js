@@ -29,15 +29,24 @@ module.exports = ({env}) => ({
       },
     },
   },
-    "users-permissions": {
-        config: {
-          jwtSecret: env('JWT_SECRET'), // Ensure this is set
-          jwtExpiresIn: '7d', // Customize expiration time (optional)
-          register: {
-            emailConfirmation: true,
-          },
+   'users-permissions': {
+    config: {
+      jwtSecret: env('JWT_SECRET'),
+      jwtExpiresIn: '7d',
+      register: {
+        emailConfirmation: true,
+      },
+      advanced: {
+        email_confirmation: {
+          // this is the URL the user will be redirected to after confirming
+          redirect: env(
+            'EMAIL_CONFIRMATION_REDIRECT'
+          
+          ),
         },
       },
+    },
+  },
     email: {
     config: {
       provider: 'mailgun',
