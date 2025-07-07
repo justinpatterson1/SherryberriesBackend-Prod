@@ -59,7 +59,7 @@
       ]
     },
     "phone": {
-      "type": "integer"
+      "type": "string"
     },
     "orderId": {
       "type": "uid"
