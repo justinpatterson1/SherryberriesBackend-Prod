@@ -37,13 +37,12 @@ module.exports = ({env}) => ({
         emailConfirmation: true,
       },
       advanced: {
-        email_confirmation: {
-          // this is the URL the user will be redirected to after confirming
-          redirect: env(
-            'EMAIL_CONFIRMATION_REDIRECT'
-          
-          ),
-        },
+        // must be true to expose /api/auth/send-email-confirmation
+        email_confirmation: true,
+        // where users click the link will send them
+        email_confirmation_redirection: env(
+          'EMAIL_CONFIRMATION_REDIRECT'
+        )
       },
     },
   },
