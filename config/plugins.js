@@ -55,8 +55,8 @@ module.exports = ({env}) => ({
         url:    env('MAILGUN_URL', 'https://api.mailgun.net'), // ← new name
       },
       settings: {
-        defaultFrom: 'no-reply@mg.sherry-berries.com',
-        defaultReplyTo:'no-reply@mg.sherry-berries.com',
+        defaultFrom: 'noreply@mg.sherry-berries.com',
+        defaultReplyTo:'noreply@mg.sherry-berries.com',
       },
     },
   },
