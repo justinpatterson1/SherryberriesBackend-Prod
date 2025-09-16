@@ -1,9 +1,7 @@
 console.log('🔔 custom plugins.js loaded');
 
-
-module.exports = ({env}) => ({
-  
- upload: {
+module.exports = ({ env }) => ({
+  upload: {
     config: {
       provider: 'aws-s3-custom',
       providerOptions: {
@@ -12,61 +10,68 @@ module.exports = ({env}) => ({
         s3Options: {
           credentials: {
             accessKeyId: env('AWS_ACCESS_KEY_ID'),
-            secretAccessKey: env('AWS_SECRET_ACCESS_KEY'),
+            secretAccessKey: env('AWS_SECRET_ACCESS_KEY')
           },
           region: env('AWS_REGION'),
           params: {
             ACL: env('AWS_ACL', 'public-read'),
             //signedUrlExpires: env('AWS_SIGNED_URL_EXPIRES', 15 * 60),
-            Bucket: env('AWS_S3_BUCKET_NAME'),
-          },
-        },
+            Bucket: env('AWS_S3_BUCKET_NAME')
+          }
+        }
       },
       actionOptions: {
         upload: {},
         uploadStream: {},
-        delete: {},
-      },
-    },
+        delete: {}
+      }
+    }
   },
-   'users-permissions': {
+  'users-permissions': {
     config: {
       jwtSecret: env('JWT_SECRET'),
       jwtExpiresIn: '7d',
       register: {
-        emailConfirmation: true,
+        emailConfirmation: true
       },
       advanced: {
         // must be true to expose /api/auth/send-email-confirmation
         email_confirmation: true,
         // where users click the link will send them
-        email_confirmation_redirection: env(
-          'EMAIL_CONFIRMATION_REDIRECT'
-        )
-      },
-    },
+        email_confirmation_redirection: env('EMAIL_CONFIRMATION_REDIRECT')
+      }
+    }
   },
-    email: {
+  // email: {
+  //   config: {
+  //     provider: 'mailgun',
+  //     providerOptions: {
+  //       key: env('MAILGUN_API_KEY'), // ← new name
+  //       domain: env('MAILGUN_DOMAIN'),
+  //       url: env('MAILGUN_URL', 'https://api.mailgun.net') // ← new name
+  //     },
+  //     settings: {
+  //       defaultFrom: 'noreply@mg.sherry-berries.com',
+  //       defaultReplyTo: 'noreply@mg.sherry-berries.com'
+  //     }
+  //   }
+  // },
+  email: {
     config: {
-      provider: 'mailgun',
+      provider: 'postmark',
       providerOptions: {
-        key:    env('MAILGUN_API_KEY'),               // ← new name
-        domain: env('MAILGUN_DOMAIN'),
-        url:    env('MAILGUN_URL', 'https://api.mailgun.net'), // ← new name
+        apiKey: env('POSTMARK_API_KEY'),
       },
       settings: {
-        defaultFrom: 'noreply@mg.sherry-berries.com',
-        defaultReplyTo:'noreply@mg.sherry-berries.com',
+        defaultFrom: 'sherryberries@gmail.com',
+        defaultReplyTo: 'sherryberries@gmail.com',
       },
     },
   },
-      'image-optimizer': {
-    enabled: false,
-  },
-
-    
+  'image-optimizer': {
+    enabled: false
+  }
 });
-
 
 // config/plugins.js
 // module.exports = ({ env }) => {
@@ -100,4 +105,3 @@ module.exports = ({env}) => ({
 //     },
 //   };
 // };
-

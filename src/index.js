@@ -23,7 +23,7 @@ function encryptText(plaintext) {
   const cipher = crypto.createCipheriv(ALGORITHM, SECRET_KEY, iv);
   const encrypted = Buffer.concat([
     cipher.update(plaintext, 'utf8'),
-    cipher.final(),
+    cipher.final()
   ]);
   return iv.toString('hex') + ':' + encrypted.toString('hex');
 }
@@ -39,7 +39,7 @@ function decryptText(encryptedPayload) {
   const decipher = crypto.createDecipheriv(ALGORITHM, SECRET_KEY, iv);
   const decrypted = Buffer.concat([
     decipher.update(cipherBuffer),
-    decipher.final(),
+    decipher.final()
   ]);
   return decrypted.toString('utf8');
 }
@@ -48,12 +48,10 @@ module.exports = {
   register({ strapi }) {
     // strapi.documents.use(async (context, next) => {
     //   const { uid, action, params } = context;
-
     //   // 4) If this isn’t the Coupon model, just pass through
     //   if (uid !== 'api::coupon.coupon') {
     //     return await next();
     //   }
-
     //   // 5) On create/update, encrypt the 'code' field
     //   if (action === 'create' || action === 'update') {
     //     const data = params.data || {};
@@ -66,17 +64,14 @@ module.exports = {
     //       }
     //     }
     //   }
-
     //   // 6) Call Strapi’s default logic (DB operations, etc.)
     //   await next();
-
     //   // 7) On find/findOne/findMany, decrypt the code in the result
     //   if (['find', 'findOne', 'findMany'].includes(action)) {
     //     const result = context.result;
     //     if (!result || result.data == null) {
     //       return;
     //     }
-
     //     // If single entry
     //     if (!Array.isArray(result.data)) {
     //       const record = result.data;
@@ -104,7 +99,7 @@ module.exports = {
     //     }
     //   }
     // });
-  },
+  }
   // bootstrap({ strapi }) {},
   // destroy({ strapi }) {},
 };

@@ -3,7 +3,13 @@
 const fs = require('fs-extra');
 const path = require('path');
 const mime = require('mime-types');
-const { categories, authors, articles, global, about } = require('../data/data.json');
+const {
+  categories,
+  authors,
+  articles,
+  global,
+  about
+} = require('../data/data.json');
 
 async function seedExampleApp() {
   const shouldImportSeedData = await isFirstRun();
@@ -28,7 +34,7 @@ async function isFirstRun() {
   const pluginStore = strapi.store({
     environment: strapi.config.environment,
     type: 'type',
-    name: 'setup',
+    name: 'setup'
   });
   const initHasRun = await pluginStore.get({ key: 'initHasRun' });
   await pluginStore.set({ key: 'initHasRun', value: true });
@@ -37,22 +43,24 @@ async function isFirstRun() {
 
 async function setPublicPermissions(newPermissions) {
   // Find the ID of the public role
-  const publicRole = await strapi.query('plugin::users-permissions.role').findOne({
-    where: {
-      type: 'public',
-    },
-  });
+  const publicRole = await strapi
+    .query('plugin::users-permissions.role')
+    .findOne({
+      where: {
+        type: 'public'
+      }
+    });
 
   // Create the new permissions and link them to the public role
   const allPermissionsToCreate = [];
-  Object.keys(newPermissions).map((controller) => {
+  Object.keys(newPermissions).map(controller => {
     const actions = newPermissions[controller];
-    const permissionsToCreate = actions.map((action) => {
+    const permissionsToCreate = actions.map(action => {
       return strapi.query('plugin::users-permissions.permission').create({
         data: {
           action: `api::${controller}.${controller}.${action}`,
-          role: publicRole.id,
-        },
+          role: publicRole.id
+        }
       });
     });
     allPermissionsToCreate.push(...permissionsToCreate);
@@ -77,7 +85,7 @@ function getFileData(fileName) {
     filepath: filePath,
     originalFileName: fileName,
     size,
-    mimetype: mimeType,
+    mimetype: mimeType
   };
 }
 
@@ -91,9 +99,9 @@ async function uploadFile(file, name) {
         fileInfo: {
           alternativeText: `An image uploaded to Strapi called ${name}`,
           caption: name,
-          name,
-        },
-      },
+          name
+        }
+      }
     });
 }
 
@@ -102,7 +110,7 @@ async function createEntry({ model, entry }) {
   try {
     // Actually create the entry in Strapi
     await strapi.documents(`api::${model}.${model}`).create({
-      data: entry,
+      data: entry
     });
   } catch (error) {
     console.error({ model, entry, error });
@@ -118,8 +126,8 @@ async function checkFileExistsBeforeUpload(files) {
     // Check if the file already exists in Strapi
     const fileWhereName = await strapi.query('plugin::upload.file').findOne({
       where: {
-        name: fileName.replace(/\..*$/, ''),
-      },
+        name: fileName.replace(/\..*$/, '')
+      }
     });
 
     if (fileWhereName) {
@@ -150,7 +158,9 @@ async function updateBlocks(blocks) {
       updatedBlocks.push(blockCopy);
     } else if (block.__component === 'shared.slider') {
       // Get files already uploaded to Strapi or upload new files
-      const existingAndUploadedFiles = await checkFileExistsBeforeUpload(block.files);
+      const existingAndUploadedFiles = await checkFileExistsBeforeUpload(
+        block.files
+      );
       // Copy the block to not mutate directly
       const blockCopy = { ...block };
       // Replace the file names on the block with the actual files
@@ -178,8 +188,8 @@ async function importArticles() {
         cover,
         blocks: updatedBlocks,
         // Make sure it's not a draft
-        publishedAt: Date.now(),
-      },
+        publishedAt: Date.now()
+      }
     });
   }
 }
@@ -196,9 +206,9 @@ async function importGlobal() {
       publishedAt: Date.now(),
       defaultSeo: {
         ...global.defaultSeo,
-        shareImage,
-      },
-    },
+        shareImage
+      }
+    }
   });
 }
 
@@ -211,8 +221,8 @@ async function importAbout() {
       ...about,
       blocks: updatedBlocks,
       // Make sure it's not a draft
-      publishedAt: Date.now(),
-    },
+      publishedAt: Date.now()
+    }
   });
 }
 
@@ -230,8 +240,8 @@ async function importAuthors() {
       model: 'author',
       entry: {
         ...author,
-        avatar,
-      },
+        avatar
+      }
     });
   }
 }
@@ -243,7 +253,7 @@ async function importSeedData() {
     category: ['find', 'findOne'],
     author: ['find', 'findOne'],
     global: ['find', 'findOne'],
-    about: ['find', 'findOne'],
+    about: ['find', 'findOne']
   });
 
   // Create all entries
@@ -268,7 +278,7 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(error);
   process.exit(1);
 });

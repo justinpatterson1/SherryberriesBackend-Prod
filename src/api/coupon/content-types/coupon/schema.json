@@ -19,10 +19,7 @@
     },
     "discountType": {
       "type": "enumeration",
-      "enum": [
-        "fixed",
-        "percentage"
-      ]
+      "enum": ["fixed", "percentage"]
     },
     "validFrom": {
       "type": "date"

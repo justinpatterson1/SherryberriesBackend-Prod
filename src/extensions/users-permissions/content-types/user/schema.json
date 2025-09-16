@@ -67,10 +67,7 @@
     },
     "role_type": {
       "type": "enumeration",
-      "enum": [
-        "admin",
-        "customer"
-      ]
+      "enum": ["admin", "customer"]
     },
     "firstName": {
       "type": "string"

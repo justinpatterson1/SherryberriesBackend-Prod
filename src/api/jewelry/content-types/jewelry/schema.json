@@ -25,12 +25,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "isFeatured": {
       "type": "boolean",
@@ -45,26 +40,14 @@
     },
     "category": {
       "type": "enumeration",
-      "enum": [
-        "Nose-Ring",
-        "Tragus",
-        "Belly-Ring",
-        "Septum",
-        "Tongue-Ring"
-      ]
+      "enum": ["Nose-Ring", "Tragus", "Belly-Ring", "Septum", "Tongue-Ring"]
     },
     "Instructions": {
       "type": "blocks"
     },
     "material": {
       "type": "enumeration",
-      "enum": [
-        "Gold",
-        "Silver",
-        "Acrylic",
-        "Plastic",
-        "Stainless-Steel"
-      ]
+      "enum": ["Gold", "Silver", "Acrylic", "Plastic", "Stainless-Steel"]
     },
     "ItemType": {
       "type": "string",

@@ -9,8 +9,8 @@ module.exports = {
       handler: 'new-auth.customRegister',
       config: {
         policies: [],
-        middlewares: [],
-      },
-    },
-  ],
+        middlewares: []
+      }
+    }
+  ]
 };

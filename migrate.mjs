@@ -44,28 +44,30 @@ import { Client } from 'pg';
             'strapi_workflows_stages_workflow_lnk',
             'strapi_workflows_stages_permissions_lnk'
           );`,
-      (err, rows) => err ? rej(err) : res(rows.map(r => r.name))
+      (err, rows) => (err ? rej(err) : res(rows.map(r => r.name)))
     );
   });
 
   console.log('→ Discovered tables:', tables);
 
   // 3) Sort tables: entities first, then component tables, then link tables
-  const entityTables    = tables.filter(t => !t.endsWith('_cmps') && !t.endsWith('_lnk'));
+  const entityTables = tables.filter(
+    t => !t.endsWith('_cmps') && !t.endsWith('_lnk')
+  );
   const componentTables = tables.filter(t => t.endsWith('_cmps'));
-  const linkTables      = tables.filter(t => t.endsWith('_lnk'));
+  const linkTables = tables.filter(t => t.endsWith('_lnk'));
   tables = [...entityTables, ...componentTables, ...linkTables];
 
   console.log('→ Migration order:', tables);
 
   // 4) Connect to Postgres
   const pg = new Client({
-    host:     'dpg-d1322jbuibrs73fo3r00-a.oregon-postgres.render.com',
-    port:     5432,
+    host: 'dpg-d1322jbuibrs73fo3r00-a.oregon-postgres.render.com',
+    port: 5432,
     database: 'sherry_berries_db',
-    user:     'admin',
+    user: 'admin',
     password: 'zshvg88zNAOegmB74HhSHdIH0AteQJLl',
-    ssl:      { rejectUnauthorized: false },
+    ssl: { rejectUnauthorized: false }
   });
   await pg.connect();
 
@@ -73,7 +75,7 @@ import { Client } from 'pg';
   for (const tbl of tables) {
     // 5a) Fetch all rows from SQLite
     const rows = await new Promise((res, rej) => {
-      sq.all(`SELECT * FROM "${tbl}"`, (e, data) => e ? rej(e) : res(data));
+      sq.all(`SELECT * FROM "${tbl}"`, (e, data) => (e ? rej(e) : res(data)));
     });
     if (!rows.length) {
       console.log(`— skipping empty table "${tbl}"`);
@@ -105,8 +107,8 @@ import { Client } from 'pg';
     );
 
     // 5d) Build INSERT SQL
-    const quotedCols   = cols.map(c => `"${c}"`).join(', ');
-    const placeholders = cols.map((_, i) => `$${i+1}`).join(', ');
+    const quotedCols = cols.map(c => `"${c}"`).join(', ');
+    const placeholders = cols.map((_, i) => `$${i + 1}`).join(', ');
     const insertSQL = `
       INSERT INTO "${tbl}" (${quotedCols})
       VALUES (${placeholders})
@@ -119,13 +121,17 @@ import { Client } from 'pg';
         let v = row[col];
 
         // Timestamp conversion
-        if ((typeof v === 'number' && v > 1e12) ||
-            (typeof v === 'string' && /^\d+$/.test(v) && Number(v) > 1e12)) {
+        if (
+          (typeof v === 'number' && v > 1e12) ||
+          (typeof v === 'string' && /^\d+$/.test(v) && Number(v) > 1e12)
+        ) {
           return new Date(Number(v));
         }
         // Truncate overly long strings
         if (typeof v === 'string' && maxLens[col] && v.length > maxLens[col]) {
-          console.warn(`⚠ Truncating "${col}" in "${tbl}" ${v.length}→${maxLens[col]} chars`);
+          console.warn(
+            `⚠ Truncating "${col}" in "${tbl}" ${v.length}→${maxLens[col]} chars`
+          );
           return v.slice(0, maxLens[col]);
         }
         // Clamp integers to 32-bit
@@ -153,7 +159,6 @@ import { Client } from 'pg';
     if (err) console.error('Error closing SQLite:', err);
     else console.log('🎉 Migration complete!');
   });
-
 })().catch(err => {
   console.error('Migration failed:', err);
   process.exit(1);

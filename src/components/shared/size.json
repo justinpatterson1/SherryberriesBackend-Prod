@@ -11,12 +11,7 @@
     },
     "Size": {
       "type": "enumeration",
-      "enum": [
-        "Small",
-        "Medium",
-        "Large",
-        "X-Large"
-      ]
+      "enum": ["Small", "Medium", "Large", "X-Large"]
     }
   }
 }

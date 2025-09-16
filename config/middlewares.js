@@ -1,41 +1,45 @@
-module.exports = ({env})=> [
+module.exports = ({ env }) => [
   'strapi::logger',
   'strapi::errors',
   {
-        name: 'strapi::security',
-        config: {
-          contentSecurityPolicy: {
-            useDefaults: true,
-            directives: {
-              'connect-src': ["'self'", 'https:'],
-              'img-src': [
-                "'self'",
-                'data:',
-                'blob:',
-                'market-assets.strapi.io',
-                'sherryberries-prod-bucket.s3.us-east-2.amazonaws.com',
-              ],
-              'media-src': [
-                "'self'",
-                'data:',
-                'blob:',
-                'market-assets.strapi.io',
-                'sherryberries-prod-bucket.s3.us-east-2.amazonaws.com',
-              ],
-              upgradeInsecureRequests: null,
-            },
-          },
-        },
-      },
-   {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+            'sherryberries-prod-bucket.s3.us-east-2.amazonaws.com'
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+            'sherryberries-prod-bucket.s3.us-east-2.amazonaws.com'
+          ],
+          upgradeInsecureRequests: null
+        }
+      }
+    }
+  },
+  {
     name: 'strapi::cors',
     config: {
       origin: [
-        env('FRONTEND_URL', 'http://localhost:3000'),
+        env(
+          'FRONTEND_URL',
+          process.env.NEXT_PUBLIC_SHERRYBERRIES_FRONTEND_URL ||
+            'http://localhost:3000'
+        ),
         'https://sherryberriesbackend-prod.onrender.com'
       ],
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    },
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+    }
   },
   'strapi::poweredBy',
   'strapi::query',
@@ -43,13 +47,13 @@ module.exports = ({env})=> [
   {
     name: 'strapi::session',
     config: {
-      key: 'strapi.sess',         // Key used in the cookie
-      maxAge: 86400000,           // Session expiration in ms (1 day)
-      httpOnly: true,             // Prevent client-side access to the cookie
+      key: 'strapi.sess', // Key used in the cookie
+      maxAge: 86400000, // Session expiration in ms (1 day)
+      httpOnly: true, // Prevent client-side access to the cookie
       secure: env('NODE_ENV') === 'production', // Use secure cookies in production
-      sameSite: 'lax',            // Protect against CSRF
-    },
+      sameSite: 'lax' // Protect against CSRF
+    }
   },
   'strapi::favicon',
-  'strapi::public',
+  'strapi::public'
 ];

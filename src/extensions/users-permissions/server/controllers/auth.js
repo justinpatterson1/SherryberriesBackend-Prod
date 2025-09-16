@@ -12,8 +12,11 @@ module.exports = {
       .service('auth')
       .register(ctx);
 
-    console.log('✅ User created. Confirmed status:', registration.user.confirmed);
+    console.log(
+      '✅ User created. Confirmed status:',
+      registration.user.confirmed
+    );
 
     return registration;
-  },
+  }
 };

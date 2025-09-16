@@ -20,11 +20,7 @@
     },
     "paymentType": {
       "type": "enumeration",
-      "enum": [
-        "CC",
-        "C.O.D",
-        "BT"
-      ]
+      "enum": ["CC", "C.O.D", "BT"]
     },
     "isPaid": {
       "type": "boolean",
@@ -36,12 +32,7 @@
     },
     "shipping_method": {
       "type": "enumeration",
-      "enum": [
-        "ttpost",
-        "courier",
-        "websource",
-        "DHL"
-      ]
+      "enum": ["ttpost", "courier", "websource", "DHL"]
     },
     "tracking_number": {
       "type": "text"
@@ -51,12 +42,7 @@
     },
     "order_status": {
       "type": "enumeration",
-      "enum": [
-        "open",
-        "closed",
-        "pending",
-        "cancelled"
-      ]
+      "enum": ["open", "closed", "pending", "cancelled"]
     },
     "phone": {
       "type": "string"

@@ -2,6 +2,6 @@
 
 module.exports = {
   register: {
-    emailConfirmation: true,
-  },
+    emailConfirmation: true
+  }
 };
