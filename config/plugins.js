@@ -1,6 +1,13 @@
 console.log('🔔 custom plugins.js loaded');
 
-module.exports = ({ env }) => ({
+module.exports = ({ env }) => {
+  // Debug environment variables
+  console.log('🔍 Email config debug:');
+  console.log('POSTMARK_SERVER_TOKEN:', env('POSTMARK_SERVER_TOKEN') ? 'SET' : 'NOT SET');
+  console.log('POSTMARK_DEFAULT_FROM:', env('POSTMARK_DEFAULT_FROM'));
+  console.log('POSTMARK_SMTP_HOST:', env('POSTMARK_SMTP_HOST'));
+  
+  return {
   upload: {
     config: {
       provider: 'aws-s3-custom',
@@ -50,8 +57,8 @@ module.exports = ({ env }) => ({
         host: env('POSTMARK_SMTP_HOST', 'smtp.postmarkapp.com'),
         port: env.int('POSTMARK_SMTP_PORT', 587),
         auth: {
-          user: env('POSTMARK_SERVER_TOKEN'),
-          pass: env('POSTMARK_SERVER_TOKEN')
+          user: env('POSTMARK_SERVER_TOKEN') || 'your_postmark_server_token',
+          pass: env('POSTMARK_SERVER_TOKEN') || 'your_postmark_server_token'
         },
         secure: env.bool('POSTMARK_SMTP_SECURE', false), // false for 587, true for 465
       },
@@ -64,7 +71,8 @@ module.exports = ({ env }) => ({
   'image-optimizer': {
     enabled: false
   }
-});
+  };
+};
 
 // config/plugins.js
 // module.exports = ({ env }) => {
