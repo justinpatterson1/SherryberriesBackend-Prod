@@ -985,7 +985,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     >;
     orderId: Schema.Attribute.UID;
     paymentType: Schema.Attribute.Enumeration<['CC', 'C.O.D', 'BT']>;
-    phone: Schema.Attribute.Integer;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     shipping_address: Schema.Attribute.Text;
     shipping_method: Schema.Attribute.Enumeration<

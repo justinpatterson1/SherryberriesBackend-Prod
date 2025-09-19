@@ -1,4 +1,5 @@
 // migrate.mjs
+import 'dotenv/config';
 import sqlite3 from 'sqlite3';
 import { Client } from 'pg';
 
@@ -60,15 +61,25 @@ import { Client } from 'pg';
 
   console.log('→ Migration order:', tables);
 
-  // 4) Connect to Postgres
-  const pg = new Client({
-    host: 'dpg-d1322jbuibrs73fo3r00-a.oregon-postgres.render.com',
-    port: 5432,
-    database: 'sherry_berries_db',
-    user: 'admin',
-    password: 'zshvg88zNAOegmB74HhSHdIH0AteQJLl',
-    ssl: { rejectUnauthorized: false }
-  });
+  // 4) Connect to Postgres (use env vars or DATABASE_URL)
+  const connectionConfig = process.env.DATABASE_URL
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false }
+      }
+    : {
+        host: process.env.PGHOST || process.env.DATABASE_HOST,
+        port: Number(process.env.PGPORT || process.env.DATABASE_PORT || 5432),
+        database: process.env.PGDATABASE || process.env.DATABASE_NAME,
+        user: process.env.PGUSER || process.env.DATABASE_USERNAME,
+        password: process.env.PGPASSWORD || process.env.DATABASE_PASSWORD,
+        ssl:
+          process.env.PGSSL === 'disable' || process.env.DATABASE_SSL === 'false'
+            ? false
+            : { rejectUnauthorized: false }
+      };
+
+  const pg = new Client(connectionConfig);
   await pg.connect();
 
   // 5) Migrate tables in order

@@ -42,31 +42,24 @@ module.exports = ({ env }) => ({
       }
     }
   },
-  // email: {
-  //   config: {
-  //     provider: 'mailgun',
-  //     providerOptions: {
-  //       key: env('MAILGUN_API_KEY'), // ← new name
-  //       domain: env('MAILGUN_DOMAIN'),
-  //       url: env('MAILGUN_URL', 'https://api.mailgun.net') // ← new name
-  //     },
-  //     settings: {
-  //       defaultFrom: 'noreply@mg.sherry-berries.com',
-  //       defaultReplyTo: 'noreply@mg.sherry-berries.com'
-  //     }
-  //   }
-  // },
+  // Postmark via Nodemailer SMTP
   email: {
     config: {
-      provider: 'postmark',
+      provider: 'nodemailer',
       providerOptions: {
-        apiKey: env('POSTMARK_API_KEY'),
+        host: env('POSTMARK_SMTP_HOST', 'smtp.postmarkapp.com'),
+        port: env.int('POSTMARK_SMTP_PORT', 587),
+        auth: {
+          user: env('POSTMARK_SERVER_TOKEN'),
+          pass: env('POSTMARK_SERVER_TOKEN')
+        },
+        secure: env.bool('POSTMARK_SMTP_SECURE', false), // false for 587, true for 465
       },
       settings: {
-        defaultFrom: 'sherryberries@gmail.com',
-        defaultReplyTo: 'sherryberries@gmail.com',
-      },
-    },
+        defaultFrom: env('POSTMARK_DEFAULT_FROM', 'sherryberries@gmail.com'),
+        defaultReplyTo: env('POSTMARK_DEFAULT_REPLY_TO', 'sherryberries@gmail.com')
+      }
+    }
   },
   'image-optimizer': {
     enabled: false
