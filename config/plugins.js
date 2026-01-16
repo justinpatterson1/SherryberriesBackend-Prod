@@ -63,8 +63,8 @@ module.exports = ({ env }) => {
         secure: env.bool('POSTMARK_SMTP_SECURE', false), // false for 587, true for 465
       },
       settings: {
-        defaultFrom: env('POSTMARK_DEFAULT_FROM', 'sherryberries@gmail.com'),
-        defaultReplyTo: env('POSTMARK_DEFAULT_REPLY_TO', 'sherryberries@gmail.com')
+        defaultFrom: env('POSTMARK_DEFAULT_FROM', 'noreply@sherryberries.com'),
+        defaultReplyTo: env('POSTMARK_DEFAULT_REPLY_TO', 'support@sherryberries.com')
       }
     }
   },
