@@ -39,6 +39,7 @@
     "uuid": "eb948768-f66e-4757-9876-d65a7c9d7946"
   },
   "devDependencies": {
+    "@strapi/typescript-utils": "^5.45.0",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
     "typescript": "^5.3.3"
