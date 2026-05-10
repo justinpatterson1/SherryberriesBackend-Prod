@@ -11,6 +11,7 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "username": {
       "type": "string",
@@ -67,13 +68,22 @@
     },
     "role_type": {
       "type": "enumeration",
-      "enum": ["admin", "customer"]
+      "enum": [
+        "admin",
+        "customer"
+      ]
     },
     "firstName": {
       "type": "string"
     },
     "lastName": {
       "type": "string"
+    },
+    "wishlist": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wishlist.wishlist",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

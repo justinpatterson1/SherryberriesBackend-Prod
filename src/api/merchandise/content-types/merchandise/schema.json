@@ -25,7 +25,12 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "isFeatured": {
       "type": "boolean",
@@ -36,8 +41,8 @@
     },
     "sizes": {
       "type": "component",
-      "repeatable": true,
-      "component": "shared.size"
+      "component": "shared.size",
+      "repeatable": true
     },
     "discount": {
       "type": "integer"
@@ -45,6 +50,12 @@
     "ItemType": {
       "type": "string",
       "default": "Merchandise"
+    },
+    "wishlist": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::wishlist.wishlist",
+      "inversedBy": "merchandises"
     }
   }
 }
