@@ -1,19 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
     "module": "CommonJS",
-    "moduleResolution": "node",
-    "strict": false,
+    "moduleResolution": "Node",
+    "target": "ES2019",
+    "lib": ["ES2020"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "strict": false,
+    "allowJs": false,
+    "noEmit": true,
+    "noEmitOnError": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitThis": true
   },
   "include": [
-    "./**/*.ts"
+    "./types/**/*.d.ts"
   ],
   "exclude": [
     "node_modules",
-    "build",
     ".cache",
-    ".strapi"
+    ".tmp",
+    "build",
+    "dist",
+    "src/admin",
+    "src/plugins/**/admin"
   ]
 }
