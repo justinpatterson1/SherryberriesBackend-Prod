@@ -10,7 +10,7 @@ module.exports = ({ env }) => {
   return {
   upload: {
     config: {
-      provider: 'aws-s3-custom',
+      provider: '@strapi/provider-upload-aws-s3',
       providerOptions: {
         //baseUrl: env('AWS_BASE_URL'),
         rootPath: 'images/',
